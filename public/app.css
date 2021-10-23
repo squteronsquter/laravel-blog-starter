@@ -1,0 +1,31 @@
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: sans-serif;
+    font-size: 62.5%;
+}
+body {
+    background-color: #0a0616;
+    color: #eee;
+    max-width: 600px;
+    margin: auto;
+}
+h1 {
+    font-size: 2.8rem;;
+    line-height: 2;
+    padding: 2rem 0;
+}
+p {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    padding: 1rem 0;
+    font-weight: 100;
+}
+article + article {
+    border-top: 1px solid #eee;
+    margin-top: 3rem;
+    padding: 3rem 0;
+}
