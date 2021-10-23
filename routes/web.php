@@ -2,22 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('posts');
 });
-
-
 
 Route::get('posts/{post}', function ($slug) {
 
@@ -25,14 +12,18 @@ Route::get('posts/{post}', function ($slug) {
 
     if(! file_exists($path)) {
 
-        // debug
-        // ddd('file does not exist');
-        // or show 404 page
-        // abort(404);
-        // or redirect to home page
         return redirect('/');
 
     }
+
+    $post = cache() -> remember('posts.{$slug}', now() -> addMinutes(60), function () use ($path) {
+
+	    var_dump('Not cashed version');
+	
+	    return file_get_contents($path);
+	
+    });
+    
     
     $post = file_get_contents($path);
     
