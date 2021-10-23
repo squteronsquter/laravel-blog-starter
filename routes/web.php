@@ -22,6 +22,17 @@ Route::get('/', function () {
 Route::get('posts/{post}', function ($slug) {
 
     $path = __DIR__ . "/../resources/posts/{$slug}.html";
+
+    if(! file_exists($path)) {
+
+        // debug
+        // ddd('file does not exist');
+        // or show 404 page
+        // abort(404);
+        // or redirect to home page
+        return redirect('/');
+
+    }
     
     $post = file_get_contents($path);
     
